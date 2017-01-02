@@ -1,0 +1,79 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: aliceblue;
+}
+
+html {
+  height: 100%;
+  background-image: url("assets/images/misty-mountain.jpg") ;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transition: 1s;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 99vh;
+}
+
+h1 {
+  display: block;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  color: aliceblue;
+}
+
+li {
+  display: inline-block;
+  width: 24%;
+  color: white;
+  line-height: 400%;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+li:hover {
+  text-shadow: 0 0 10px grey;
+}
+
+.main {
+  padding: 0 13%;
+}
+
+.list {
+  display: inline-block;
+  display: none;
+}
+
+.heading {
+  display: none;
+}
+
+.project {
+  width: 30%;
+  display: inline-block;
+  display: none;
+  position: absolute;
+  text-align: center;
+}
+.project1 {
+
+}
+
+.project2 {
+  left: 53%;
+}
+
+.project3 {
+  top: 75%;
+}
+
+.project4 {
+  top: 75%;
+  left: 53%
+}
