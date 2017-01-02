@@ -113,10 +113,20 @@ function onTouchEnd(e){
 		ctx.globalCompositeOperation = "screen";
 
 		particles = [];
-		for(var i=0;i<ww;i+=Math.round(ww/150)){
-			for(var j=0;j<wh;j+=Math.round(ww/150)){
-				if(data[ ((i + j*ww)*4) + 3] > 150){
-					particles.push(new Particle(i,j));
+		if (window.innerWidth < 750) {
+			for(var i=0;i<ww;i+=Math.round(ww/75)){
+				for(var j=0;j<wh;j+=Math.round(ww/75)){
+					if(data[ ((i + j*ww)*4) + 3] > 75){
+						particles.push(new Particle(i,j));
+					}
+				}
+			}
+		}	else {
+			for(var i=0;i<ww;i+=Math.round(ww/150)){
+				for(var j=0;j<wh;j+=Math.round(ww/150)){
+					if(data[ ((i + j*ww)*4) + 3] > 150){
+						particles.push(new Particle(i,j));
+					}
 				}
 			}
 		}
