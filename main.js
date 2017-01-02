@@ -113,20 +113,10 @@ function onTouchEnd(e){
 		ctx.globalCompositeOperation = "screen";
 
 		particles = [];
-		if (window.innerWidth < 750) {
-			for(var i=0;i<ww;i+=Math.round(ww/75)){
-				for(var j=0;j<wh;j+=Math.round(ww/75)){
-					if(data[ ((i + j*ww)*4) + 3] > 75){
-						particles.push(new Particle(i,j));
-					}
-				}
-			}
-		}	else {
-			for(var i=0;i<ww;i+=Math.round(ww/150)){
-				for(var j=0;j<wh;j+=Math.round(ww/150)){
-					if(data[ ((i + j*ww)*4) + 3] > 150){
-						particles.push(new Particle(i,j));
-					}
+		for(var i=0;i<ww;i+=Math.round(ww/150)){
+			for(var j=0;j<wh;j+=Math.round(ww/150)){
+				if(data[ ((i + j*ww)*4) + 3] > 150){
+					particles.push(new Particle(i,j));
 				}
 			}
 		}
@@ -150,7 +140,7 @@ function onTouchEnd(e){
 	}
 	let hidden = true;
 	function hideModule() {
-		document.querySelector(".content").style.bottom = "-105%";
+		document.querySelector(".content").style.bottom = "-115%";
 		hidden = true;
 	}
 	function showModule() {
@@ -159,7 +149,6 @@ function onTouchEnd(e){
 	}
 
 	document.querySelector("canvas").addEventListener("click", () => {
-		console.log("hello");
 		if (!hidden) {
 			hideModule();
 		}
