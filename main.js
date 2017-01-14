@@ -7,7 +7,7 @@
 		radius;
 		window.innerWidth < 750 ? radius = 1 : radius = 3;
 
-	var colors = ["#468966","#FFF0A5", "#FFB03B","#B64926", "#8E2800"];
+	var colors = ["#000", "#000", "#000", "#000", "#000"];
 
 	var copy = ["Hi I'm Ned", "I Love Web", "Love web as well?","Let's Internet!"];
 
@@ -138,70 +138,56 @@ function onTouchEnd(e){
 			particles[i].render2();
 		}
 	}
-	let hidden = true;
-	function hideModule() {
-		document.querySelector(".content").style.bottom = "-115%";
-		hidden = true;
-	}
-	function showModule() {
-		document.querySelector(".content").style.bottom = "-15%";
-		hidden = false;
-	}
-
-	document.querySelector("canvas").addEventListener("click", () => {
-		if (!hidden) {
-			hideModule();
-		}
-	});
-
-	for (const item of document.querySelector(".links").children) {
-		item.addEventListener("click", () => {
-			if (hidden) {
-				showModule();
-			 return false;
-			}
-			hideModule();
-			setTimeout(() => {
-				showModule();
-			}, 1500);
-		});
-	}
 
 	window.addEventListener("mousemove", onMouseMove);
 	window.addEventListener("touchmove", onTouchMove);
 	window.addEventListener("touchend", onTouchEnd);
 	requestAnimationFrame(render);
-
 	initScene(copy[0]);
-	let count = 1;
-	setTimeout(() => {
-		requestAnimationFrame(render2);
-	}, 5000);
-	setTimeout(() => {
-		initScene(copy[count]);
-		requestAnimationFrame(render);
+
+	var count = 1;
+	var num = copy.length;
+	var timeOuts = [];
+	var time = 5000;
+while (count < num) {
+	timeOuts.push(
+		setTimeout(function () {
+				initScene(copy[0]);
+				requestAnimationFrame(render2);
+		}, time));
+		time += 3000;
+		timeOuts.push(
+		setTimeout(function () {
+				initScene(copy[1]);
+				copy = copy.slice(1);
+				requestAnimationFrame(render);
+		}, time));
 		count += 1;
-	}, 7000);
-	setTimeout(() => {
-		initScene(copy[count - 1]);
+		time += 5000;
+}
+timeOuts.push(
+setTimeout(function () {
+		initScene(copy[0]);
 		requestAnimationFrame(render2);
-	}, 10000);
-	setTimeout(() => {
-		requestAnimationFrame(render);
-		initScene(copy[count]);
-		count += 1;
-	}, 12000);
-	setTimeout(() => {
-		initScene(copy[count - 1]);
-		requestAnimationFrame(render2);
-	}, 15000);
-	setTimeout(() => {
-		requestAnimationFrame(render);
-		initScene(copy[count]);
-		count += 1;
-	}, 17000);
-	setTimeout(() => {
-		initScene(copy[count - 1]);
-		requestAnimationFrame(render2);
-		showModule();
-	}, 20000);
+		document.querySelector(".skipIntro").style.opacity = 0;
+		setTimeout(function() {
+			document.querySelector(".skipIntro").style.display = "none";
+		}, 300);
+}, time));
+let pressed = false;
+document.querySelector(".skipIntro").addEventListener("click", function() {
+	if (pressed === false) {
+		for(var i = 0; i < timeOuts.length; i++) {
+				clearTimeout(timeOuts[i]);
+				requestAnimationFrame(render);
+				initScene(copy[0]);
+				requestAnimationFrame(render2);
+				pressed = true;
+				document.querySelector(".skipIntro").style.opacity = 0;
+				setTimeout(function() {
+					document.querySelector(".skipIntro").style.display = "none";
+				}, 300);
+
+		}
+	}
+});
