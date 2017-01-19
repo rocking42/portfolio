@@ -7,7 +7,7 @@
 		radius;
 		window.innerWidth < 750 ? radius = 1 : radius = 3;
 
-	var colors = ["#000", "#000", "#000", "#000", "#000"];
+	var colors = ["#000", "#2e2828", "#3c3434", "#554c4c", "#756b6b"];
 
 	var copy = ["Hi I'm Ned", "I Love Web", "Love web as well?","Let's Internet!"];
 
@@ -165,17 +165,22 @@ while (count < num) {
 		count += 1;
 		time += 5000;
 }
+
 timeOuts.push(
 setTimeout(function () {
 		initScene(copy[0]);
 		requestAnimationFrame(render2);
 		document.querySelector(".skipIntro").style.opacity = 0;
+		showModule(".content1");
 		setTimeout(function() {
 			document.querySelector(".skipIntro").style.display = "none";
 		}, 300);
 }, time));
 let pressed = false;
-document.querySelector(".skipIntro").addEventListener("click", function() {
+document.querySelector(".skipIntro").addEventListener("click", timeClear);
+
+
+function timeClear() {
 	if (pressed === false) {
 		for(var i = 0; i < timeOuts.length; i++) {
 				clearTimeout(timeOuts[i]);
@@ -190,4 +195,34 @@ document.querySelector(".skipIntro").addEventListener("click", function() {
 
 		}
 	}
-});
+}
+
+let hidden = true;
+let previousClicked;
+ function hideModule() {
+		document.querySelector(`${previousClicked}`).style.top = "100%";
+		hidden = true;
+	}
+	function showModule(item) {
+		document.querySelector(`${item}`).style.top = "12%";
+		previousClicked = item;
+		hidden = false;
+	}
+
+	document.querySelector("canvas").addEventListener("click", () => {
+		if (!hidden) {
+			hideModule();
+		}
+	});
+
+	for (const item of document.querySelector(".links").children) {
+		item.addEventListener("click", (e) => {
+			if (hidden) {
+				timeClear();
+				showModule(e.currentTarget.dataset.modal);
+			 return false;
+			}
+			hideModule();
+			showModule(e.currentTarget.dataset.modal);
+		});
+	}
