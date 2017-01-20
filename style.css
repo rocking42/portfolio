@@ -73,7 +73,7 @@ input{
 .content1 {
   overflow: auto;
   position: absolute;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   left: 17%;
   right: 10%;
   top: 100%;
@@ -88,11 +88,12 @@ input{
   display: inline;
   height: 80%;
   transition: 1s;
+  box-shadow: 0 0 10px 20px rgba(255,255,255, 0.2), 0 0 5px 10px rgba(255,255,255, 0.5);
 }
 .content2 {
   overflow: auto;
   position: absolute;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   left: 17%;
   right: 10%;
   top: 100%;
@@ -111,7 +112,7 @@ input{
 .content3 {
   overflow: auto;
   position: absolute;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   left: 17%;
   right: 10%;
   top: 100%;
