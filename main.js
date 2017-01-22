@@ -192,7 +192,6 @@ function timeClear() {
 				setTimeout(function() {
 					document.querySelector(".skipIntro").style.display = "none";
 				}, 300);
-
 		}
 	}
 }
