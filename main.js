@@ -142,62 +142,71 @@ function onTouchEnd(e){
 	window.addEventListener("mousemove", onMouseMove);
 	window.addEventListener("touchmove", onTouchMove);
 	window.addEventListener("touchend", onTouchEnd);
-	requestAnimationFrame(render);
-	initScene(copy[0]);
 
-	var count = 1;
-	var num = copy.length;
-	var timeOuts = [];
-	var time = 5000;
-while (count < num) {
-	timeOuts.push(
-		setTimeout(function () {
-				initScene(copy[0]);
-				requestAnimationFrame(render2);
-		}, time));
-		time += 3000;
-		timeOuts.push(
-		setTimeout(function () {
-				initScene(copy[1]);
-				copy = copy.slice(1);
-				requestAnimationFrame(render);
-		}, time));
-		count += 1;
-		time += 5000;
-}
+	let hidden = true;
+	let previousClicked;
 
-timeOuts.push(
-setTimeout(function () {
+	if (window.innerWidth > 700) {
 		initScene(copy[0]);
-		requestAnimationFrame(render2);
-		document.querySelector(".skipIntro").style.opacity = 0;
-		showModule(".content1");
-		setTimeout(function() {
-			document.querySelector(".skipIntro").style.display = "none";
-		}, 300);
-}, time));
-let pressed = false;
-document.querySelector(".skipIntro").addEventListener("click", timeClear);
+		requestAnimationFrame(render);
 
 
-function timeClear() {
-	if (pressed === false) {
-		for(var i = 0; i < timeOuts.length; i++) {
-				clearTimeout(timeOuts[i]);
-				requestAnimationFrame(render);
-				initScene(copy[0]);
-				requestAnimationFrame(render2);
-				pressed = true;
-				document.querySelector(".skipIntro").style.opacity = 0;
-				setTimeout(function() {
-					document.querySelector(".skipIntro").style.display = "none";
-				}, 300);
+		var count = 1;
+		var num = copy.length;
+		var timeOuts = [];
+		var time = 5000;
+	while (count < num) {
+		timeOuts.push(
+			setTimeout(function () {
+					initScene(copy[0]);
+					requestAnimationFrame(render2);
+			}, time));
+			time += 3000;
+			timeOuts.push(
+			setTimeout(function () {
+					initScene(copy[1]);
+					copy = copy.slice(1);
+					requestAnimationFrame(render);
+			}, time));
+			count += 1;
+			time += 5000;
+	}
+
+	timeOuts.push(
+	setTimeout(function () {
+			initScene(copy[0]);
+			requestAnimationFrame(render2);
+			document.querySelector(".skipIntro").style.opacity = 0;
+			showModule(".content1");
+			setTimeout(function() {
+				document.querySelector(".skipIntro").style.display = "none";
+			}, 300);
+	}, time));
+	let pressed = false;
+	document.querySelector(".skipIntro").addEventListener("click", timeClear);
+
+
+	function timeClear() {
+		if (pressed === false) {
+			for(var i = 0; i < timeOuts.length; i++) {
+					clearTimeout(timeOuts[i]);
+					requestAnimationFrame(render);
+					initScene(copy[0]);
+					requestAnimationFrame(render2);
+					pressed = true;
+					document.querySelector(".skipIntro").style.opacity = 0;
+					setTimeout(function() {
+						document.querySelector(".skipIntro").style.display = "none";
+					}, 300);
+			}
 		}
 	}
+} else {
+	showModule(".content1");
+	pressed = true;
 }
 
-let hidden = true;
-let previousClicked;
+
  function hideModule() {
 		document.querySelector(`${previousClicked}`).style.top = "100%";
 		hidden = true;
@@ -217,7 +226,9 @@ let previousClicked;
 	for (const item of document.querySelector(".links").children) {
 		item.addEventListener("click", (e) => {
 			if (hidden) {
-				timeClear();
+				if (window.innerWidth > 700) {
+					timeClear();
+				}
 				showModule(e.currentTarget.dataset.modal);
 			 return false;
 			}
