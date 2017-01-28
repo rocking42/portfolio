@@ -60,7 +60,7 @@
 	};
 
 	Particle.prototype.render2 = function() {
-		for (i=0; i<2; i++) {
+		for (let i=0; i<2; i++) {
 			if (this.pos[i] > this.getBound(i)-10) { this.v[i] *= -1; }
 			else if (this.pos[i] < 10) { this.v[i] *= -1; }
 			this.pos[i] += this.v[i]*4;
@@ -154,7 +154,7 @@ function onTouchEnd(e){
 		var count = 1;
 		var num = copy.length;
 		var timeOuts = [];
-		var time = 5000;
+		var time = 6000;
 	while (count < num) {
 		timeOuts.push(
 			setTimeout(function () {

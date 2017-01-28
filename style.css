@@ -27,6 +27,11 @@ input{
     background: rgba(255,255,255,0.2);
 }
 
+.my-img {
+  width:30%;
+  border-radius:50%;
+}
+
 .modal__trigger {
   position: relative;
   display: inline-block;
@@ -144,4 +149,16 @@ input{
 
 .cont-link {
   line-height: 5px;
+}
+
+@media (max-width: 720px){
+  .my-img {
+    width: 60%;
+  }
+  .content-text {
+    width: 75%;
+  }
+  .content-image {
+    width: 75%;
+  }
 }
