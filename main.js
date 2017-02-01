@@ -135,19 +135,15 @@ if (window.innerWidth > 700) {
             requestAnimationFrame(render);
         }, time));
         count += 1;
-        time += 5000;
+        time += 4000;
     }
     timeOuts.push(setTimeout(function () {
         initScene(copy[0]);
         requestAnimationFrame(render2);
         document.querySelector(".skipIntro").style.opacity = 0;
         showModule(".content1");
-        setTimeout(function () {
-            document.querySelector(".skipIntro").style.display = "none";
-        }, 300);
     }, time));
     var pressed_1 = false;
-    document.querySelector(".skipIntro").addEventListener("click", timeClear);
     function timeClear() {
         if (pressed_1 === false) {
             for (var i = 0; i < timeOuts.length; i++) {
@@ -156,10 +152,6 @@ if (window.innerWidth > 700) {
                 initScene(copy[0]);
                 requestAnimationFrame(render2);
                 pressed_1 = true;
-                document.querySelector(".skipIntro").style.opacity = 0;
-                setTimeout(function () {
-                    document.querySelector(".skipIntro").style.display = "none";
-                }, 300);
             }
         }
     }
