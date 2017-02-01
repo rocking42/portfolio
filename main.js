@@ -116,6 +116,7 @@ window.addEventListener("touchmove", onTouchMove);
 window.addEventListener("touchend", onTouchEnd);
 var hidden = true;
 var previousClicked;
+var pressed = false;
 if (window.innerWidth > 700) {
     initScene(copy[0]);
     requestAnimationFrame(render);
@@ -133,6 +134,9 @@ if (window.innerWidth > 700) {
             initScene(copy[1]);
             copy = copy.slice(1);
             requestAnimationFrame(render);
+            if (count === num) {
+                pressed = true;
+            }
         }, time));
         count += 1;
         time += 4000;
@@ -143,15 +147,14 @@ if (window.innerWidth > 700) {
         document.querySelector(".skipIntro").style.opacity = 0;
         showModule(".content1");
     }, time));
-    var pressed_1 = false;
     function timeClear() {
-        if (pressed_1 === false) {
+        if (pressed === false) {
             for (var i = 0; i < timeOuts.length; i++) {
                 clearTimeout(timeOuts[i]);
                 requestAnimationFrame(render);
                 initScene(copy[0]);
                 requestAnimationFrame(render2);
-                pressed_1 = true;
+                pressed = true;
             }
         }
     }

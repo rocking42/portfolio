@@ -145,7 +145,7 @@ function onTouchEnd(e){
 
 	let hidden = true;
 	let previousClicked;
-
+	var pressed = false;
 	if (window.innerWidth > 700) {
 		initScene(copy[0]);
 		requestAnimationFrame(render);
@@ -167,6 +167,9 @@ function onTouchEnd(e){
 					initScene(copy[1]);
 					copy = copy.slice(1);
 					requestAnimationFrame(render);
+					if (count === num) {
+						pressed = true;
+					}
 			}, time));
 			count += 1;
 			time += 4000;
@@ -182,7 +185,7 @@ function onTouchEnd(e){
 			// 	document.querySelector(".skipIntro").style.display = "none";
 			// }, 300);
 	}, time));
-	let pressed = false;
+
 	// document.querySelector(".skipIntro").addEventListener("click", timeClear);
 
 
