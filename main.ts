@@ -27,7 +27,7 @@
 		this.vy = (Math.random()-0.5)*25;
 		this.accX = 0;
 		this.accY = 0;
-		this.friction = Math.random()*0.001 + 0.94;
+		this.friction = Math.random()*0.01 + 0.94;
 		this.pos = [ x, y ];
   this.v = [
     (Math.random()-0.5)*0.3,
