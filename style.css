@@ -177,4 +177,9 @@ main-link:hover {
   .content-image {
     width: 75%;
   }
+
+  .contact-link {
+    font-size: 2.5rem;
+    letter-spacing: -0.4rem;
+  }
 }
