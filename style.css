@@ -120,7 +120,7 @@ main-link:hover {
   height: 8vh;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 1px 1px 1px black;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .proj a {
@@ -165,6 +165,10 @@ main-link:hover {
 
 .cont-link {
   line-height: 5px;
+}
+
+::-webkit-scrollbar {
+  background: transparent
 }
 
 @media (max-width: 720px){
